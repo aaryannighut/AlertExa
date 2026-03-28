@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update & Delete Subject Related Questions</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .question-box {
+            width: 600px;
+            border-radius: 8px;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .question-header {
+            background-color: #1e2a57;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .question-subheader {
+            background-color: #e9f0ff;
+            color: #1e2a57;
+            font-weight: 500;
+            text-align: left;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .form-section {
+            padding: 20px;
+        }
+
+        select.form-select {
+            border-radius: 6px;
+            font-size: 16px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="question-box">
+        <div class="question-header">
+            Update & Delete Subject Related Questions
+        </div>
+
+        <div class="question-subheader" data-bs-toggle="collapse" data-bs-target="#updateQuestionBox">
+            Update & Delete Question
+        </div>
+
+        <div id="updateQuestionBox" class="collapse show">
+            <div class="form-section">
+                <select class="form-select">
+                    <option selected>Choose Subject</option>
+                    <option value="1">Computer Network</option>
+                    <option value="2">Web Computing</option>
+                    <option value="3">Artificial Intelligence</option>
+                    <option value="4">Data Warehouse and Mining</option>
+                    <option value="5">Statistics</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

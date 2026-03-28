@@ -1,0 +1,122 @@
+/* === PAGE BACKGROUND === */
+body {
+    margin: 0;
+    background: #f4f0ff;           /* same family as login page */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* center content width */
+.container {
+    max-width: 1200px;
+    padding: 40px 15px;
+}
+
+/* === ONE BIG CARD AROUND BOTH BLOCKS === */
+.container > .row {
+    background: #faf7ff;           /* soft card background */
+    border-radius: 28px;
+    box-shadow:
+        0 18px 40px rgba(140,110,255,0.18),
+        0 8px 18px rgba(140,110,255,0.10);
+    padding: 40px 40px;
+    align-items: center;
+    transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+/* hover of whole card */
+.container > .row:hover {
+    transform: translateY(-3px);
+    box-shadow:
+        0 24px 55px rgba(140,110,255,0.25),
+        0 10px 22px rgba(140,110,255,0.15);
+}
+
+/* make inner blocks transparent so they look like one card */
+.guideline-box,
+.quiz-box,
+.col-md-5.p-5.bg-white {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+/* optional subtle divider between left & right on large screens */
+@media (min-width: 768px) {
+    .guideline-box {
+        border-right: 1px solid rgba(0,0,0,0.04);
+    }
+}
+
+/* heading & text keep same style */
+.guideline-box h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #3a3376;
+    margin-bottom: 25px;
+}
+
+.guideline-box p {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* select inside right side */
+.quiz-box .form-select {
+    height: 50px;
+    font-size: 16px;
+    border-radius: 16px;
+    border: 2px solid #d8d2ff !important;
+    background: #ffffff;
+    transition: 0.25s ease;
+}
+
+.quiz-box .form-select:hover,
+.quiz-box .form-select:focus {
+    border-color: #b7a9ff !important;
+    box-shadow: 0 0 10px rgba(150,120,255,0.25);
+    outline: none !important;
+}
+
+/* button stays as before */
+.start-quiz-btn {
+    background: linear-gradient(135deg, #4d47d3, #6a5cff);
+    color: #fff !important;
+    padding: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    border-radius: 16px;
+    border: none;
+    margin-top: 40px;
+    box-shadow: 0 8px 18px rgba(77,71,211,0.35);
+    transition: 0.25s ease;
+}
+
+.start-quiz-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 14px 30px rgba(77,71,211,0.45);
+    opacity: 0.97;
+}
+
+/* Reduce width of guideline block, increase width of quiz block */
+.guideline-box {
+    flex: 0 0 45%;      /* previously 50% — now narrower */
+    max-width: 45%;
+}
+
+.col-md-5.p-5.quiz-box,
+.quiz-box {
+    flex: 0 0 55%;      /* right block becomes wider */
+    max-width: 55%;
+}
+
+@media (max-width: 768px) {
+    .guideline-box,
+    .quiz-box {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}

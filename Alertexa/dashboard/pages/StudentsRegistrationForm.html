@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students Registration Form</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .registration-box {
+            width: 90%;
+            max-width: 1100px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #1e2a57;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .sub-header {
+            background-color: #e9f0ff;
+            color: #1e2a57;
+            padding: 10px 20px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+
+        .form-section {
+            padding: 30px;
+        }
+
+        .form-control, .form-select {
+            border-radius: 6px;
+            font-size: 16px;
+            padding: 10px;
+        }
+
+        .register-btn {
+            background-color: #03c7f7;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 20px;
+            font-weight: 500;
+        }
+
+        .register-btn:hover {
+            background-color: #00aede;
+        }
+
+        label {
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="registration-box">
+        <div class="header">Students Registration Form</div>
+
+        <div class="sub-header" data-bs-toggle="collapse" data-bs-target="#registrationForm">
+            Registration form
+        </div>
+
+        <div id="registrationForm" class="collapse show">
+            <div class="form-section">
+                <form>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" class="form-control" placeholder="Enter Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mobile">Mobile</label>
+                            <input type="text" id="mobile" class="form-control" placeholder="Enter Mobile No.">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="father">Father's Name</label>
+                            <input type="text" id="father" class="form-control" placeholder="Enter Father's Name">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="erp">ERP No.</label>
+                            <input type="text" id="erp" class="form-control" placeholder="Enter ERP Number">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="dob">DOB</label>
+                            <input type="date" id="dob" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" class="form-control" placeholder="Enter Password">
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="type">Choose Type</label>
+                            <select id="type" class="form-select">
+                                <option selected>Choose Type</option>
+                                <option value="Student">Student</option>
+                                <option value="Teacher">Teacher</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" placeholder="Enter Email">
+                        </div>
+                    </div>
+
+                    <button type="button" class="register-btn">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

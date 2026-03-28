@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Subject Related Result</title>
+
+  <!-- Bootstrap & Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header */
+    .header {
+      background-color: #1e2a57;
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    /* Collapsible bar */
+    .sub-header {
+      background-color: #e9f0ff;
+      color: #1e2a57;
+      padding: 10px 20px;
+      font-weight: 500;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* Container for dropdown and table */
+    .content-container {
+      padding: 20px;
+      background-color: white;
+      border-radius: 6px;
+      box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+      margin: 10px;
+    }
+
+    /* Dropdown styling */
+    .form-select {
+      border: 1.5px solid #c8d8ff;
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+
+    /* Table styling */
+    table {
+      width: 100%;
+      background-color: white;
+      border-collapse: collapse;
+    }
+
+    th, td {
+      text-align: center;
+      padding: 12px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      font-weight: 600;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="header">
+    Search Subject Related Result
+  </div>
+
+  <!-- Collapsible sub-header -->
+  <div class="sub-header" data-bs-toggle="collapse" data-bs-target="#subjectResult">
+    Search Subject Result
+    <i class="fa-solid fa-angle-up"></i>
+  </div>
+
+  <!-- Collapsible content -->
+  <div id="subjectResult" class="collapse show">
+    <div class="content-container">
+
+      <!-- Dropdown -->
+      <select class="form-select">
+        <option selected>Choose Subject</option>
+        <option value="1">Artificial Intelligence</option>
+        <option value="2">Data Warehouse</option>
+        <option value="3">Computer Networks</option>
+        <option value="4">Web Computing</option>
+      </select>
+
+      <!-- Table -->
+      <table class="table table-bordered align-middle">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Institute ID</th>
+            <th>Subject</th>
+            <th>Correct Answer</th>
+            <th>Wrong Answer</th>
+            <th>Out Of</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Example Row -->
+          <!--
+          <tr>
+            <td>1</td>
+            <td>Aaryan Nighut</td>
+            <td>230600453</td>
+            <td>AI</td>
+            <td>8</td>
+            <td>2</td>
+            <td>10</td>
+          </tr>
+          -->
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

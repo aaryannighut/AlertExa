@@ -1,0 +1,283 @@
+/* ========= GLOBAL PAGE BACKGROUND ========= */
+body {
+    margin: 0;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    background: #f6f2ff; /* same soft lilac as other pages */
+}
+
+/* ========= MAIN CARD ========= */
+.main-box {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-radius: 26px;
+    padding: 30px 40px 40px;
+    background: #f7f3ff;
+    box-shadow: 0 24px 60px rgba(123, 92, 255, 0.18);
+    border: none;
+}
+
+/* ========= NAVBAR ========= */
+.main-box .navbar {
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 10px;
+}
+
+.navbar-brand {
+    font-weight: 800;
+    font-size: 26px;
+    color: #2f2578 !important;
+}
+
+/* top-right links */
+.main-box .navbar-nav .nav-link {
+    color: #4b4f67;
+    font-weight: 500;
+    margin-left: 18px;
+    position: relative;
+    padding: 6px 0;
+}
+
+/* underline hover like admin style */
+.main-box .navbar-nav .nav-link:not(.signup-btn):not(.login-btn)::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4d47d3, #6a5cff);
+    transition: width 0.2s ease;
+}
+
+.main-box .navbar-nav .nav-link:hover::after {
+    width: 100%;
+}
+
+.main-box .navbar-nav .nav-link:hover {
+    color: #2f2578;
+}
+
+/* primary header buttons (Sign up / Sign in) */
+.signup-btn,
+.login-btn {
+    padding: 6px 18px !important;
+    border-radius: 999px;
+    color: #ffffff !important;
+    border: none !important;
+    font-weight: 600;
+    background: linear-gradient(135deg, #4d47d3, #6a5cff) !important;
+    box-shadow: 0 8px 18px rgba(77, 71, 211, 0.35);
+}
+
+.signup-btn:hover,
+.login-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 26px rgba(77, 71, 211, 0.45);
+}
+
+/* ========= LEFT COLUMN – AUTH BOXES ========= */
+.login-box,
+.signup-box {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 28px 30px 35px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+    margin-top: 20px;
+}
+
+/* only show the one that JS marks as .active */
+.login-box,
+.signup-box {
+    display: none;
+}
+.login-box.active,
+.signup-box.active {
+    display: block;
+}
+
+/* form labels */
+.login-box label,
+.signup-box label {
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 6px;
+}
+
+/* inputs / textarea */
+.login-box .form-control,
+.signup-box .form-control {
+    border-radius: 12px;
+    border: 1px solid #d9d6ff;
+    padding: 10px 14px;
+    font-size: 15px;
+    box-shadow: inset 0 0 0 rgba(0, 0, 0, 0);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    background: #fbfaff;
+}
+
+.login-box .form-control:focus,
+.signup-box .form-control:focus {
+    border-color: #7b5cff;
+    box-shadow: 0 0 0 3px rgba(123, 92, 255, 0.2);
+    background: #ffffff;
+}
+
+/* Student login link */
+.login-box a,
+.signup-box a {
+    color: #4d47d3;
+    font-size: 14px;
+}
+.login-box a:hover,
+.signup-box a:hover {
+    text-decoration: underline;
+}
+
+/* ========= AUTH BUTTONS ========= */
+.signin-btn,
+.register-btn {
+    border-radius: 14px !important;
+    border: none !important;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #4d47d3, #6a5cff) !important;
+    box-shadow: 0 12px 30px rgba(77, 71, 211, 0.35);
+}
+
+.signin-btn:hover,
+.register-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 38px rgba(77, 71, 211, 0.45);
+}
+
+/* ========= RIGHT COLUMN – ILLUSTRATION ========= */
+.main-box img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+
+/* ========= RESPONSIVE ========= */
+@media (max-width: 991.98px) {
+    .main-box {
+        padding: 22px 18px 30px;
+    }
+
+    .login-box,
+    .signup-box {
+        margin-bottom: 24px;
+    }
+
+    .navbar-brand {
+        font-size: 22px;
+    }
+
+    .main-box img {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Main login/signup box hover effect */
+.main-box {
+    border-radius: 20px;
+    padding: 40px 50px;
+    box-shadow: 0 20px 60px rgba(120, 90, 255, 0.15);
+    transition: all 0.3s ease-in-out;
+}
+
+.main-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 80px rgba(120, 90, 255, 0.30);
+}
+
+/* Input + Textarea styling */
+.main-box input,
+.main-box textarea {
+    border: 1.5px solid #d8d1ff;
+    padding: 12px 15px;
+    border-radius: 12px;
+    transition: all 0.25s ease-in-out;
+    background: #faf7ff;
+}
+
+/* Hover */
+.main-box input:hover,
+.main-box textarea:hover {
+    border-color: #7a67ff;
+    background: #f3efff;
+    box-shadow: 0 4px 12px rgba(122, 103, 255, 0.25);
+}
+
+/* Focus effect */
+.main-box input:focus,
+.main-box textarea:focus {
+    border-color: #6a5cff;
+    background: #fff;
+    box-shadow: 0 6px 15px rgba(106, 92, 255, 0.35);
+    outline: none;
+}
+
+.signin-btn,
+.register-btn {
+    background: linear-gradient(90deg, #5b3df5, #7a67ff);
+    border: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 18px;
+    transition: 0.3s ease-in-out;
+    box-shadow: 0 10px 25px rgba(90, 65, 220, 0.25);
+}
+
+/* Hover effect */
+.signin-btn:hover,
+.register-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 35px rgba(90, 65, 220, 0.35);
+}
+
+/* ===== MAIN WHITE BLOCK HOVER EFFECT ===== */
+.main-box {
+    transition: all 0.35s ease-in-out !important;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(120, 90, 255, 0.18);
+}
+
+/* Hover Glow + Lift */
+.main-box:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 70px rgba(120, 90, 255, 0.30);
+}
+
+
+/* ===== MAIN WHITE BLOCK (No margin / No padding) ===== */
+.login-signup {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 25px;
+    box-shadow: 0 10px 40px rgba(120, 90, 255, 0.18);
+
+    /* Removed margin & padding */
+    margin: 0 0 0 0px !important;
+    padding: 0 !important;
+
+    transition: all 0.35s ease-in-out;
+}
+
+/* ===== HOVER EFFECT ===== */
+.login-signup {
+    transform: translateY(-6px);
+    box-shadow: 0 25px 70px rgba(120, 90, 255, 0.30);
+}
+
+.active {
+  margin: 0 !important;
+}
+
+

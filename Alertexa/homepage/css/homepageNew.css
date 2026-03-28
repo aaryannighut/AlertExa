@@ -1,0 +1,183 @@
+/* ===== PAGE BACKGROUND ===== */
+body {
+    background: #f4f0ff;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* ===== MAIN WRAPPER ===== */
+.container {
+    max-width: 1200px;
+}
+
+/* ===== MAIN TITLE ===== */
+h1.text-white.fw-bold {
+    color: #3a3376 !important;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 25px;
+    text-shadow: 0px 2px 6px rgba(0,0,0,0.15);
+}
+
+/* ===== LOGIN TITLE ===== */
+.text-danger.text-center {
+    color: #4d47d3 !important;
+    font-weight: 800;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+/* ===== OUTER CARD (IMAGE + LOGIN AREA) ===== */
+.row.bg-white.shadow-lg {
+    background: #f3f0ff;
+    border-radius: 28px;
+    padding: 35px 45px;
+    box-shadow: 0 12px 30px rgba(140, 110, 255, 0.18);
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+/* left and right columns behave like flex children */
+.row.bg-white.shadow-lg > .col-md-6 {
+    flex: 1;
+}
+
+/* ===== LEFT SIDE (IMAGE PANEL) ===== */
+.row.bg-white.shadow-lg > .col-md-6:first-child {
+    padding-right: 30px;
+    border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.col-md-6 img {
+    width: 100%;
+    display: block;
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+}
+
+/* ===== RIGHT SIDE (LOGIN PANEL) ===== */
+.row.bg-white.shadow-lg > .col-md-6:last-child {
+    padding-left: 40px;
+}
+
+/* inner card only around the form */
+.login-form {
+    background: rgba(255,255,255,0.95);
+    border-radius: 22px;
+    padding: 25px 25px 10px;
+    box-shadow: 0 10px 24px rgba(82, 63, 201, 0.12);
+}
+
+/* ===== INPUT LABEL BOXES ===== */
+.input-group-text {
+    background: linear-gradient(135deg, #4d47d3, #6a5cff);
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    font-size: 1rem;
+    border: none;
+    border-radius: 14px 0 0 14px;
+    width: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== INPUT FIELDS ===== */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group .form-control,
+.input-group .form-select {
+    border: 1px solid #ddd !important;
+    outline: none !important;
+    box-shadow: none !important;
+    border-radius: 0 14px 14px 0;
+    background: #ffffff;
+    height: 44px;
+    font-size: 0.95rem;
+}
+
+/* Focus state */
+.input-group .form-control:focus,
+.input-group .form-select:focus {
+    border: 1px solid #b9b3ff !important;
+    box-shadow: 0 0 0 2px rgba(106, 92, 255, 0.25) !important;
+}
+
+/* ===== BUTTONS (SAME THEME) ===== */
+button.btn,
+a.btn {
+    background: linear-gradient(135deg, #4d47d3, #6a5cff);
+    color: white !important;
+    border-radius: 16px;
+    font-weight: 600;
+    border: none;
+    padding: 12px;
+    font-size: 1.1rem;
+    box-shadow: 0px 8px 18px rgba(77, 71, 211, 0.35);
+    transition: 0.22s ease;
+}
+
+/* Hover effect */
+button.btn:hover,
+a.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0px 14px 26px rgba(77, 71, 211, 0.45);
+}
+
+/* Disabled button */
+button.btn:disabled {
+    background: #dedafc !important;
+    color: #ffffff !important;
+    box-shadow: none !important;
+}
+
+/* spacing between buttons */
+.btn.w-100.mb-5 {
+    margin-bottom: 18px !important;
+}
+
+/* ===== RESPONSIVE TWEAKS ===== */
+@media (max-width: 992px) {
+    .row.bg-white.shadow-lg {
+        padding: 25px 18px;
+        flex-direction: column;
+    }
+
+    .row.bg-white.shadow-lg > .col-md-6:first-child {
+        border-right: none;
+        padding-right: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        padding-bottom: 20px;
+        margin-bottom: 15px;
+    }
+
+    .row.bg-white.shadow-lg > .col-md-6:last-child {
+        padding-left: 0;
+    }
+
+    .text-danger.text-center {
+        font-size: 1.6rem;
+    }
+}
+
+.row.bg-white.shadow-lg {
+    background: #f5f1ff !important;
+    border-radius: 28px;
+    padding: 35px 45px;
+    box-shadow: 0 18px 40px rgba(120, 90, 255, 0.15);
+}
+
+.row.bg-white.shadow-lg {
+    background: #faf7ff !important;   /* very soft lavender-white */
+    border-radius: 28px;
+    padding: 35px 45px;
+    box-shadow: 
+        0 20px 45px rgba(120, 90, 255, 0.20),
+        0 8px 18px rgba(120, 90, 255, 0.10);
+}
+

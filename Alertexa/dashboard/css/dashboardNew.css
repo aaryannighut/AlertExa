@@ -1,0 +1,954 @@
+:root {
+  --bg: #f6f8fb;
+  --surface: #ffffff;
+  --muted: #6b7280;
+  --primary: #2b6ef6;
+  --accent: #7c3aed;
+  --danger: #ef4444;
+  --card-shadow: 0 10px 30px rgba(16,24,40,0.06);
+  --radius: 14px;
+  --sidebar-bg: linear-gradient(180deg,#12213b 0%,#183053 100%);
+  --sidebar-width: 260px;
+  --max-content-width: 1200px;
+  font-family: Inter, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+
+/* ---------- Reset & base ---------- */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: #0f172a;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+/* ---------- Sidebar (unchanged look) ---------- */
+.sidebar {
+  position: fixed;
+  left: 20px;
+  top: 20px;
+  bottom: 20px;
+  width: var(--sidebar-width);
+  background: linear-gradient(180deg,#0f172a 0%,#12213b 50%);
+  color: #e6eefc;
+  padding: 22px 18px;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(15,23,42,0.12);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 50;
+}
+
+.sidebar .admin_box h3 {
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #fff;
+  letter-spacing: 0.2px;
+}
+
+.sidebar hr {
+  border: 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  margin: 8px 0;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar ul li a {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  transition: all .18s ease;
+}
+
+/* .sidebar ul li a:hover {
+  transform: translateX(6px);
+  background: rgba(255,255,255,0.03);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.02);
+} */
+
+/* ---------- Sidebar item hover: add subtle border without layout shift ---------- */
+.sidebar ul li a {
+  border: 1px solid transparent;      /* baseline so hover doesn't shift layout */
+  transition: all .18s ease;          /* ensure smooth hover */
+  text-decoration: none;
+}
+
+/* Hover state: visible border + slight inset highlight */
+.sidebar ul li a:hover {
+  transform: translateX(6px);
+  background: rgba(255,255,255,0.03);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.02),
+    0 6px 18px rgba(2,6,23,0.12);
+  border: 1px solid rgba(255,255,255,0.12); /* visible border on hover */
+}
+
+/* Optional: stronger focus outline for keyboard users */
+.sidebar ul li a:focus {
+  outline: none;
+  box-shadow:
+    0 0 0 3px rgba(43,110,246,0.12),
+    inset 0 0 0 1px rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.14);
+}
+
+
+#logout-btn {
+  margin-top: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 0;
+  background: linear-gradient(90deg, var(--accent), var(--primary));
+  color: #fff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(124,58,237,0.12);
+}
+
+/* ---------- Toggler (small screens) ---------- */
+.toggler-box {
+  position: fixed;
+  left: calc(var(--sidebar-width) + 38px);
+  top: 26px;
+  background: var(--surface);
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  z-index: 60;
+  cursor: pointer;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggler-box .toggler-icon { font-size: 18px; color: var(--muted); }
+.toggler-box .toggler-icon.d-none { display: none; }
+
+/* ---------- Main content area ---------- */
+.main-box {
+  margin-left: calc(var(--sidebar-width) + 60px);
+  padding: 22px;
+  max-width: calc(100% - var(--sidebar-width) - 80px);
+  min-height: 100vh;
+}
+
+.list-group .list-group-item h1#brand-name {
+  margin: 0;
+  padding: 16px 18px;
+  font-size: 1.3rem;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* ---------- Stat boxes (teachers / students / subject) ---------- */
+.teacher-box {
+  background: var(--surface);
+  border-radius: 12px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  padding: 0;
+}
+
+.teacher-box .list-group-item {
+  background: transparent;
+  border: 0;
+  padding: 10px 16px;
+  font-weight: 700;
+}
+
+.teacher-box .content-box { padding: 18px; }
+
+.number-box {
+  background: linear-gradient(90deg, rgba(43,110,246,0.06), rgba(124,58,237,0.04));
+  padding: 18px;
+  border-radius: 10px;
+}
+
+.number-box h5 {
+  margin: 0;
+  font-size: 1.75rem;
+  color: var(--primary);
+  font-weight: 800;
+}
+
+/* ---------- Accordion / forms / inputs ---------- */
+.accordion .accordion-item {
+  border-radius: 10px;
+  overflow: hidden;
+  border: 0;
+  margin-bottom: 10px;
+}
+
+.accordion-button,
+buttton.accordion-button {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: linear-gradient(180deg,#fff,#fbfbff);
+  border: 1px solid rgba(13,20,40,0.04);
+  cursor: pointer;
+  font-weight: 700;
+  width: 100%;
+}
+
+.accordion-button:focus {
+  outline: 3px solid rgba(43,110,246,0.12);
+  outline-offset: 2px;
+}
+
+.accordion-body {
+  background: var(--surface);
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.form-control,
+.form-select,
+textarea.form-control {
+  border-radius: 10px;
+  border: 1px solid rgba(15,23,42,0.08);
+  padding: 10px 12px;
+  box-shadow: none;
+  font-size: .95rem;
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 8px 20px rgba(43,110,246,0.06);
+  border-color: rgba(43,110,246,0.22);
+}
+
+/* Buttons */
+.btn.subject-btn,
+.btn.bg-info {
+  border-radius: 10px;
+  padding: 10px 16px;
+  border: 0;
+  font-weight: 700;
+}
+
+.btn.bg-info {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff;
+}
+
+.subject-btn {
+  background: #263159;
+  color: #fff;
+}
+
+/* ---------- Tables ---------- */
+.table {
+  background: var(--surface);
+  border-radius: 10px;
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.table thead tr {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff;
+}
+
+.table thead th {
+  color: #fff;
+  border: 0;
+  white-space: nowrap;
+}
+
+.table tbody td {
+  vertical-align: middle;
+  border-top: 1px solid rgba(15,23,42,0.04);
+}
+
+.table.table-striped tbody tr:nth-child(even) {
+  background: rgba(10,16,40,0.02);
+}
+
+/* ---------- Modal & certificate ---------- */
+.modal.user-profile-box .modal-content {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.profile-box {
+  background: linear-gradient(180deg,#fff,#fbfbff);
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.upload-box { position: relative; display: inline-block; }
+.upload-input { position: absolute; left: 0; top: 0; opacity: 0; width: 100%; height: 100%; }
+
+.profile-box h3 { margin: 8px 0 4px; }
+
+.date-box {
+  background: linear-gradient(90deg, rgba(124,58,237,0.03), rgba(43,110,246,0.02));
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.certificate-main {
+  position: fixed;
+  inset: 6vh 6vw;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.45);
+  z-index: 120;
+}
+
+.certificate-main .main-box {
+  background: #fff;
+  padding: 28px;
+  border-radius: 12px;
+  max-width: 960px;
+  margin: auto;
+  box-shadow: var(--card-shadow);
+}
+
+.certificate-close-btn {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  background: transparent;
+  border: 0;
+  color: var(--muted);
+  font-size: 22px;
+}
+
+/* ---------- Utilities ---------- */
+.mb-3 { margin-bottom: 12px; }
+.mt-3 { margin-top: 12px; }
+.text-center { text-align: center; }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .sidebar { left: 12px; top: 12px; bottom: 12px; width: 220px; }
+  .main-box { margin-left: calc(220px + 48px); padding: 16px; }
+  .toggler-box { left: calc(220px + 28px); display: flex; }
+}
+
+@media (max-width: 900px) {
+  .sidebar { position: fixed; left: 12px; top: 12px; width: 56px; padding: 12px; border-radius: 12px; }
+  .sidebar .admin_box h3 { display: none; }
+  .sidebar ul li a { padding: 10px 8px; font-size: .86rem; }
+  .main-box { margin-left: 96px; padding: 14px; }
+  .toggler-box { display: flex; left: 96px; }
+  .teacher-box .list-group-item h4 { font-size: .95rem; }
+}
+
+@media (max-width: 640px) {
+  .sidebar { display: none; }
+  .toggler-box { left: 16px; }
+  .main-box { margin-left: 20px; padding: 12px; }
+  .teacher-box .number-box h5 { font-size: 1.4rem; }
+  .table { font-size: .92rem; }
+}
+
+/* Focus outlines for accessibility */
+a:focus, button:focus, input:focus, textarea:focus, select:focus {
+  outline: 3px solid rgba(43,110,246,0.12);
+  outline-offset: 2px;
+}
+
+/* ---------- Small animation ---------- */
+@keyframes floaty {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+.teacher-box .number-box { animation: floaty 6s ease-in-out infinite; }
+
+/* default list-group visuals */
+.list-group-item {
+  border-radius: 10px;
+  background: transparent;
+  border: 0;
+  padding: 6px 10px;
+}
+.list-group-item h3,
+.list-group-item h4 {
+  margin: 0;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+/* ---------- Page background and frosted main surface ---------- */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(800px 400px at 10% 10%, rgba(124,58,237,0.06), transparent 10%),
+    radial-gradient(700px 350px at 90% 80%, rgba(43,110,246,0.04), transparent 12%),
+    linear-gradient(180deg, #f7fbff 0%, #f0f6ff 30%, #fbfbff 100%);
+  pointer-events: none;
+}
+
+.main-box {
+  background: linear-gradient(180deg, rgba(255,255,255,0.72), rgba(255,255,255,0.86));
+  border-radius: 18px;
+  padding: 28px;
+  box-shadow: 0 18px 40px rgba(15,23,42,0.06);
+  backdrop-filter: blur(6px) saturate(120%);
+}
+
+/* ---------- Section headers (small gradient behind headings) ---------- */
+.list-group-item h3,
+.list-group-item h4 {
+  display: inline-block;
+  padding: 16px 22px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(43,110,246,0.08), rgba(124,58,237,0.06));
+  color: #0f172a;
+  box-shadow: inset 0 -2px 0 rgba(10,16,40,0.02);
+}
+
+.number-box {
+  background: linear-gradient(90deg, rgba(43,110,246,0.12), rgba(124,58,237,0.09));
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.number-box h5 { color: #2b6ef6; font-weight: 900; }
+
+/* Panels (accordions & tables) */
+.accordion .accordion-item, .table {
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(248,250,255,0.95));
+  border: 1px solid rgba(15,23,42,0.04);
+}
+
+/* Section title strip layout */
+.row > .col-md-12 > .list-group > .list-group-item,
+.row > .col-md-4 > .list-group > .list-group-item,
+.row > .col-md-8 > .list-group > .list-group-item {
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0));
+  border-radius: 10px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+/* Big heading look (brand) */
+h3#brand-name,
+.list-group-item h3 {
+  font-size: 1.6rem;
+  background: linear-gradient(90deg, #2b6ef6, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+/* Buttons with gradient accents */
+.btn.subject-btn,
+.btn.bg-info {
+  background: linear-gradient(90deg, #2b6ef6, #7c3aed) !important;
+  border: none;
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(43,110,246,0.12);
+}
+
+/* Table header stronger gradient */
+.table thead tr {
+  background: linear-gradient(90deg, rgba(43,110,246,0.9), rgba(124,58,237,0.9));
+  color: #fff;
+}
+
+/* Section separators */
+.row + .row {
+  border-top: 1px solid rgba(15,23,42,0.03);
+  padding-top: 18px;
+  margin-top: 22px;
+}
+
+/* Certificate surface */
+.certificate-main .main-box {
+  background: linear-gradient(180deg, #ffffff, #fbfbff);
+  border-radius: 14px;
+  box-shadow: 0 22px 48px rgba(15,23,42,0.12);
+}
+
+/* small responsive tweaks */
+@media (max-width: 900px) {
+  .main-box { padding: 18px; border-radius: 12px; }
+  .number-box { padding: 12px; }
+  .list-group-item h3, .list-group-item h4 { padding: 10px 12px; font-size: 1.05rem; }
+}
+
+/* Keep sidebar on top */
+.sidebar, .sidebar * { z-index: 100 !important; }
+
+/* ---------- Heading gradient + block outlines (overrides) ---------- */
+/* These are placed late so they override earlier heading styles (as in original). */
+
+.list-group-item h3,
+.list-group-item h4 {
+  display: inline-block;
+  padding: 18px 24px;
+  border-radius: 12px;
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: linear-gradient(90deg, #2b6ef6 0%, #7c3aed 50%, #ff6fb5 100%);
+  color: #ffffff;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+}
+
+.list-group-item h3::after,
+.list-group-item h4::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0));
+  z-index: -1;
+  filter: blur(6px);
+  opacity: 0.9;
+}
+
+/* helper to force text color if needed */
+.list-group-item .h3-fix,
+.list-group-item .h4-fix {
+  color: #0f172a;
+}
+
+/* Gradient border + card outline for many blocks */
+.accordion .accordion-item,
+.teacher-box,
+.table,
+.list-group > .list-group-item,
+.number-box,
+.accordion .accordion-body {
+  position: relative;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,255,0.98));
+  padding: 10px;
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, rgba(43,110,246,0.85), rgba(124,58,237,0.85), rgba(255,111,181,0.85)) 1;
+  box-shadow: 0 14px 36px rgba(15,23,42,0.06), inset 0 1px 0 rgba(255,255,255,0.6);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.accordion .accordion-item:hover,
+.teacher-box:hover,
+.table:hover,
+.list-group > .list-group-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 22px 48px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.65);
+}
+
+/* Accordion header spacing */
+.accordion .accordion-item .accordion-header .accordion-button,
+.accordion .accordion-item .accordion-body {
+  background: transparent;
+  border: 0;
+  padding: 12px 18px;
+}
+
+/* Stat boxes stronger */
+.number-box {
+  padding: 22px;
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgba(43,110,246,0.12), rgba(124,58,237,0.10));
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, rgba(43,110,246,0.45), rgba(124,58,237,0.45)) 1;
+}
+
+/* Table header contrast (override) */
+.table thead tr {
+  background: linear-gradient(90deg, rgba(43,110,246,0.95), rgba(124,58,237,0.95));
+  color: #fff;
+  border-radius: 8px;
+}
+
+/* Ensure list-group section blocks get outline */
+.row > .col-md-4 > .list-group > .list-group-item,
+.row > .col-md-8 > .list-group > .list-group-item,
+.row > .col-md-12 > .list-group > .list-group-item {
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, rgba(43,110,246,0.35), rgba(124,58,237,0.35)) 1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(250,250,255,0.98));
+  padding: 10px 14px;
+  box-shadow: 0 8px 20px rgba(15,23,42,0.03);
+}
+
+/* small links inside blocks */
+.row .list-group .list-group-item a,
+.row .list-group .list-group-item a:visited {
+  color: #2b6ef6;
+  font-weight: 700;
+}
+
+/* responsive tweak */
+@media (max-width: 900px) {
+  .list-group-item h3, .list-group-item h4 {
+    font-size: 1.15rem;
+    padding: 12px 16px;
+    border-radius: 10px;
+  }
+  .accordion .accordion-item, .table, .teacher-box {
+    padding: 10px;
+    border-radius: 10px;
+  }
+}
+
+/* keep sidebar safe */
+.sidebar, .sidebar * { z-index: 200 !important; }
+
+/* ---------- Additional heading/outline overrides (kept late) ---------- */
+.section-heading {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed, #ec4899);
+  color: #ffffff !important;
+  padding: 18px 24px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+  font-size: 1.6rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  letter-spacing: 0.5px;
+}
+
+/* Force gradient background and readable white text on headings */
+.list-group-item h3,
+.list-group-item h4 {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed, #ec4899) !important;
+  color: #fff !important;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+}
+
+/* Card outline style */
+.list-group-item,
+.accordion-item,
+.teacher-box,
+.table {
+  background: #ffffff !important;
+  border-radius: 14px !important;
+  border: 2px solid rgba(79,70,229,0.25) !important;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+/* Accordion header style */
+.accordion-button {
+  background: rgba(79, 70, 229, 0.08) !important;
+  color: #1e1b4b !important;
+  font-weight: 600;
+  border-radius: 8px !important;
+}
+
+/* Hover lift effect */
+.list-group-item:hover,
+.accordion-item:hover,
+.teacher-box:hover {
+  transform: translateY(-4px);
+  transition: 0.2s ease;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.10);
+}
+
+/* Strong stat number fill */
+.number-box {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed);
+  color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+/* Table header */
+.table thead {
+  background: linear-gradient(90deg, #4f46e5, #7c3aed, #ec4899);
+  color: white;
+}
+
+.table thead th {
+  padding: 12px;
+  font-size: 1rem;
+}
+
+/* Inputs */
+.form-control,
+.form-select {
+  border: 2px solid rgba(79,70,229,0.25);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+/* Buttons rounded */
+button, .btn { border-radius: 8px !important; }
+
+/* Force keep sidebar fixed on top layer */
+.sidebar { position: fixed; z-index: 200; }
+
+/* ---------- Heading readability safety (kept last) ---------- */
+.list-group-item h3,
+.list-group-item h4,
+.section-heading {
+  -webkit-background-clip: unset !important;
+  background-clip: unset !important;
+  -webkit-text-fill-color: unset !important;
+
+  color: #ffffff !important;
+  font-weight: 800 !important;
+  position: relative !important;
+  z-index: 2 !important;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.18) !important;
+  padding: 14px 20px !important;
+  border-radius: 10px !important;
+}
+
+/* Keep pseudo-elements behind headings */
+.list-group-item h3::after,
+.list-group-item h4::after,
+.section-heading::after {
+  z-index: 1 !important;
+}
+
+/* Ensure headings don't clip */
+.list-group-item h3,
+.list-group-item h4 { overflow: visible !important; white-space: normal !important; }
+
+/* ---------- Alternate darker heading gradient (optional override) ---------- */
+.section-heading-gradient {
+  background: linear-gradient(135deg, #3A3D98, #4B49A5, #6A5AA0);
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+/* Force-apply darker gradient to titles */
+.list-group-item h3,
+.list-group-item h4 {
+  background: linear-gradient(135deg, #3A3D98, #4B49A5, #6A5AA0) !important;
+  color: #fff !important;
+  padding: 14px 22px !important;
+  border-radius: 12px !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.10) !important;
+}
+
+/* Apply light gradient to numbers inside stat blocks */
+.number-box h5,
+.teacher-box .number-box h5,
+.student-box .number-box h5,
+.subject-box .number-box h5 {
+  background: linear-gradient(135deg, #5C6BC0, #7986CB, #9FA8DA) !important;
+  color: #ffffff !important;
+  padding: 18px;
+  border-radius: 14px;
+  font-size: 28px;
+  font-weight: 800;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+.number-box { box-shadow: none !important; }
+
+/* Outer number block background */
+.number-box {
+  background: linear-gradient(135deg, #E3E7FF, #EFF2FF) !important;
+  border-radius: 20px !important;
+  padding: 15px !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06) !important;
+}
+
+/* ---------- Attractive top header ---------- */
+.top-header {
+  background: linear-gradient(135deg, #EEF1FF, #F5F7FF);
+  border-radius: 25px;
+  padding: 25px 20px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 800;
+  color: #424874;
+  box-shadow: 0 8px 25px rgba(132,146,255,0.15);
+  border: 1px solid rgba(132,146,255,0.25);
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+.list-group-item h1,
+.container-fluid h1 {
+  background: linear-gradient(135deg, #EEF1FF, #F5F7FF) !important;
+  border-radius: 25px !important;
+  padding: 25px 20px !important;
+  text-align: center !important;
+  font-size: 32px !important;
+  font-weight: 800 !important;
+  color: #424874 !important;
+  box-shadow: 0 8px 25px rgba(132,146,255,0.15) !important;
+  border: 1px solid rgba(132,146,255,0.25) !important;
+  letter-spacing: 1px !important;
+}
+
+/* ---------- Force 3 stat cards into a single row (compact) ---------- */
+.main-box .row.mt-3:first-of-type {
+  display: flex !important;
+  gap: 20px !important;
+  align-items: stretch !important;
+  flex-wrap: nowrap !important; /* keep them on one line */
+}
+
+.teacher-box,
+.student-box,
+.subject-box {
+  flex: 1 1 0 !important;                /* equal widths */
+  min-width: 0 !important;               /* prevent overflow */
+  margin: 0 !important;                  /* spacing handled by parent gap */
+  padding: 12px 14px !important;         /* reduce internal padding */
+  min-height: 150px !important;          /* smaller card height */
+  box-sizing: border-box !important;
+}
+
+/* Inner title pill height reduce */
+.teacher-box .list-group-item h4,
+.student-box .list-group-item h4,
+.subject-box .list-group-item h4 {
+  padding: 10px 16px !important;
+  font-size: 1.05rem !important;
+  border-radius: 10px !important;
+}
+
+/* Reduce number container height and center */
+.teacher-box .number-box,
+.student-box .number-box,
+.subject-box .number-box {
+  min-height: 70px !important;
+  padding: 10px 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 10px !important;
+}
+
+/* Inner rounded number badge */
+.number-box h5 {
+  margin: 0 !important;
+  padding: 8px 16px !important;
+  font-size: 20px !important;
+  border-radius: 12px !important;
+  background: linear-gradient(135deg, #5C6BC0, #7986CB, #9FA8DA) !important;
+  color: #fff !important;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.07) !important;
+}
+
+/* ensure spacing below rows */
+.main-box .row + .row {
+  margin-top: 18px !important;
+}
+
+/* mobile fallback - let them wrap */
+@media (max-width: 900px) {
+  .main-box .row.mt-3:first-of-type { display: block !important; }
+
+  .teacher-box,
+  .student-box,
+  .subject-box {
+    width: 100% !important;
+    min-height: 120px !important;
+    margin-bottom: 12px !important;
+  }
+}
+
+/* overall page background */
+body {
+  background: linear-gradient(135deg, #faf7ff 0%, #f1edff 50%, #f7f2ff 100%);
+  background-attachment: fixed;
+}
+
+/* ---------- Global gradient button style ---------- */
+.btn-gradient {
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  color: #fff !important;
+  border: none;
+  padding: 10px 28px;
+  font-size: 17px;
+  font-weight: 600;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: 0.25s ease;
+}
+.btn-gradient:hover {
+  opacity: .9;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+.btn-gradient:active { transform: scale(.97); }
+
+/* ---------- Correct answer / highlight badge ---------- */
+.correct-answer-badge,
+.option-correct,
+.highlight-answer {
+  display: inline-block;
+  padding: 8px 22px;
+  border-radius: 10px;
+  font-weight: 600;
+  color: #fff;
+  font-size: 16px;
+  background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  transition: .25s ease;
+}
+.correct-answer-badge:hover,
+.option-correct:hover,
+.highlight-answer:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 14px rgba(0,0,0,0.15);
+}
+
+/* ---------- Tighten visible subject spacing (final) ---------- */
+.visible-subject > div {
+  margin: 8px 0 !important;
+  padding: 6px 8px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  line-height: 1.12 !important;
+}
+.visible-subject i { margin-left: 10px; font-size: 18px; }
+
+/* final safety */
+.sidebar, .sidebar * { z-index: 200 !important; }
+
+

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Subject</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .subject-box {
+            width: 400px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .subject-header {
+            background-color: #1e2a57;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-weight: 600;
+            font-size: 20px;
+        }
+
+        .subject-subheader {
+            background-color: #e9f0ff;
+            color: #1e2a57;
+            font-weight: 500;
+            text-align: center;
+            padding: 10px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .subject-list {
+            padding: 15px 25px;
+        }
+
+        .subject-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            font-size: 17px;
+            color: #333;
+        }
+
+        .subject-item i {
+            color: #1e2a57;
+            margin-left: 10px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .subject-item i:hover {
+            color: #162043;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="subject-box">
+        <div class="subject-header">
+            Show Subject
+        </div>
+        <div class="subject-subheader" data-bs-toggle="collapse" data-bs-target="#subjectList">
+            Update And Delete All Subject
+        </div>
+
+        <div id="subjectList" class="collapse show">
+            <div class="subject-list">
+                <div class="subject-item">
+                    Computer Network 
+                    <span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+                <div class="subject-item">
+                    Web Computing 
+                    <span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+                <div class="subject-item">
+                    Artificial Intelligence 
+                    <span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+                <div class="subject-item">
+                    Data Warehouse and Minning 
+                    <span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+                <div class="subject-item">
+                    Statistics 
+                    <span>
+                        <i class="fa-solid fa-pen-to-square"></i>
+                        <i class="fa-solid fa-trash"></i>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
