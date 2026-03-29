@@ -1,4 +1,4 @@
-# 🛡️ AlertExa – Smart AI Proctoring & Quiz Management System
+# AlertExa – Smart AI Proctoring & Quiz Management System
 
 **AlertExa** is a high-performance, web-based examination platform designed to ensure the integrity of online tests. By leveraging real-time AI computer vision and browser-based monitoring, it provides a secure environment for institutes to conduct exams while preventing common cheating practices.
 
